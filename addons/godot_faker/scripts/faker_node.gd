@@ -4,25 +4,25 @@ class_name FakerNode
 
 enum Gender { Any, Male, Female }
 
-var _data = {
-	"en_US": {
-		"male_first_names": ["John", "Michael", "William"],
-		"female_first_names": ["Mary", "Patricia", "Linda"],
-		"last_names": ["Smith", "Johnson", "Williams"],
-		"email_domains": ["example.com", "test.com", "demo.com"]
-	}
-}
+var _data: Dictionary
 
-var _locale: String = "en_US"
+var _locale: String = "en_US":
+	set(value):
+		_data = DataLoader.load_data(value)
+		_locale = value
 var _gender: Gender = Gender.Any
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var DataLoader = preload("res://addons/godot_faker/scripts/data_loader.gd")
+
 
 func _ready() -> void:
+	_data = DataLoader.load_data(_locale)
 	_rng.randomize()
 
 # Set the locale for data generation (e.g., "en_US")
 func set_locale(locale: String) -> FakerNode:
-	if locale in _data.keys():
+	var languagues_list = DataLoader.get_available_languages()
+	if locale in languagues_list:
 		_locale = locale
 	else:
 		push_error("Locale '%s' not supported. Falling back to 'en_US'." % locale)
@@ -42,16 +42,16 @@ func seed(value: int) -> void:
 func first_name() -> String:
 	var names: Array
 	if _gender == Gender.Male:
-		names = _data[_locale]["male_first_names"]
+		names = _data["male_first_names"]
 	elif _gender == Gender.Female:
-		names = _data[_locale]["female_first_names"]
+		names = _data["female_first_names"]
 	else:
-		names = _data[_locale]["male_first_names"] + _data[_locale]["female_first_names"]
+		names = _data["male_first_names"] + _data["female_first_names"]
 	return _pick_random(names)
 
 # Generate a random last name
 func last_name() -> String:
-	var names = _data[_locale]["last_names"]
+	var names = _data["last_names"]
 	return _pick_random(names)
 
 # Generate a random full name
@@ -62,7 +62,7 @@ func full_name() -> String:
 func email() -> String:
 	var first = first_name().to_lower().replace(" ", "")
 	var last = last_name().to_lower().replace(" ", "")
-	var domain = _data[_locale]["email_domains"][_rng.randi_range(0, _data[_locale]["email_domains"].size() - 1)]
+	var domain = _data["email_domains"][_rng.randi_range(0, _data["email_domains"].size() - 1)]
 	return "%s.%s@%s" % [first, last, domain]
 
 func _pick_random(list: Array):
