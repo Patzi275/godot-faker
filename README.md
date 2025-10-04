@@ -81,11 +81,11 @@ This plugin is in early development. Currently implemented:
 - ✅ Seeded random generation for reproducible fake data
 
 Planned features:
-- 📋 Additional identity data (emails, phone numbers, addresses)
+- 📋 Additional identity data
 - 📋 More locales and languages
-- 📋 Game-specific data (item names, quest descriptions)
+- 📋 Game-specific data (item names, ...)
 - 📋 Business data (company names, job titles)
-- 📋 Internet data (domains, URLs, IPs)
+- 📋 Internet data
 - 📋 Custom data providers
 
 ## Contributing
