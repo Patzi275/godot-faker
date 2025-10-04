@@ -1,0 +1,58 @@
+{
+  "first_name": {
+	"generic": [
+	  "James",
+	  "Emma",
+	  "Liam",
+	  "Olivia",
+	  "Noah",
+	  "Ava",
+	  "William",
+	  "Sophia",
+	  "Michael",
+	  "Isabella"
+	],
+	"female": [
+	  "Emma",
+	  "Olivia",
+	  "Ava",
+	  "Sophia",
+	  "Isabella",
+	  "Charlotte",
+	  "Amelia",
+	  "Mia",
+	  "Harper",
+	  "Evelyn"
+	],
+	"male": [
+	  "James",
+	  "Liam",
+	  "Noah",
+	  "William",
+	  "Michael",
+	  "Alexander",
+	  "Benjamin",
+	  "Daniel",
+	  "Henry",
+	  "Joseph"
+	]
+  },
+  "last_name": {
+	"generic": [
+	  "Smith",
+	  "Johnson",
+	  "Williams",
+	  "Brown",
+	  "Jones",
+	  "Garcia",
+	  "Miller",
+	  "Davis",
+	  "Rodriguez",
+	  "Martinez"
+	]
+  },
+  "sex": [
+	"male",
+	"female"
+  ]
+}

@@ -1,7 +1,7 @@
-extends Node
+extends RefCounted
 
-static func load_data(lng: String):
-	var file = FileAccess.open("res://addons/godot_faker/data/%s.json" % lng, FileAccess.READ)
+static func load_data(lng: String, module: String):
+	var file = FileAccess.open("res://addons/godot_faker/data/locales/%s/%s.json" % [lng, module], FileAccess.READ)
 	var json
 	if file:
 		json = JSON.parse_string(file.get_as_text())
@@ -9,10 +9,10 @@ static func load_data(lng: String):
 		file.close()
 		return json
 	else:
-		push_error("Failed to load faker data for language: %s" % lng)
+		push_error("Failed to load faker data for language: %s (Module: %s)" % [lng, module])
 
 static func get_available_languages():
-	var dir = DirAccess.open("res://addons/godot_faker/data")
+	var dir = DirAccess.open("res://addons/godot_faker/data/locales")
 	if dir:
 		var languages = []
 		dir.list_dir_begin()
